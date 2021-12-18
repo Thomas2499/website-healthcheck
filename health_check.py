@@ -9,9 +9,7 @@ website = {
 
 
 def _check_consistent_health(status):
-    if website["previous_status"] == status:
-        return True
-    return False
+    return website["previous_status"] == status
 
 
 def check_website_health():
