@@ -1,0 +1,9 @@
+services:
+- website-healthcheck01:
+    environment:
+      PORT: 2499
+      WEBSITE_URL: http://gsatwetwtwet
+    image: website-health-check:0.2
+    ports:
+    - 2499:2499
+version: '3.0'

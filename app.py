@@ -1,20 +1,20 @@
-from scheduler import create_scheduled_check
-from flask import Flask, Response
-from health_check import website
+from flask import Flask, Response, request
+from werkzeug.exceptions import BadRequest
+from create_env import create_env
 from config import HOST, PORT
-from threading import Thread
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
 
 
-@app.route("/status", methods=["GET"])
-def status():
-    return Response(website["status"], 200)
+@app.route("/create-env", methods=["POST"])
+def create():
+    websites = request.json
+    if type(websites) is not list:
+        raise BadRequest("Request body must be a list")
+    addresses = create_env(websites)
+    return Response(str(addresses), 200)
 
-
-schedule_thread = Thread(target=create_scheduled_check)
-schedule_thread.start()
 
 app.run(host=HOST, port=PORT)

@@ -1,8 +1,15 @@
-from os import getenv
+DOCKER_COMPOSE_TEMPLATE = {
+    "version": '3.0',
+    "services": []
+}
 
+DOCKER_COMPOSE_SERVICE_TEMPLATE = {
+    "image": "website-health-check:0.2",
+    "ports": [],
+    "environment": {
+      "WEBSITE_URL": None,
+      "PORT": None
+    }
+}
 
-WEBSITE_URL = getenv("WEBSITE_URL")
-CONNECTION_SUCCESS = "OK"
-CONNECTION_FAILED = "Failure"
-HEALTH_CHECK_INTERVAL_SECONDS = 10
-RESPONSE_DEFAULT_MESSAGE = f"Checking {WEBSITE_URL} status.."
+STARTING_PORT = 2499

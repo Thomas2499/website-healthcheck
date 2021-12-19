@@ -8,4 +8,4 @@ COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 EXPOSE 2499
 COPY . .
-CMD ["flask", "run"]
+CMD ["python", "health-check/app.py"]

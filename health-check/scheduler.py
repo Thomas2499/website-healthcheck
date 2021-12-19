@@ -1,5 +1,5 @@
-from consts import HEALTH_CHECK_INTERVAL_SECONDS
-from health_check import check_website_health
+from .consts import HEALTH_CHECK_INTERVAL_SECONDS
+from .health_check import check_website_health
 import schedule
 import time
 
