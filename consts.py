@@ -1,6 +1,6 @@
 DOCKER_COMPOSE_TEMPLATE = {
-    "version": '3.0',
-    "services": []
+    "version": '2.0',
+    "services": {}
 }
 
 DOCKER_COMPOSE_SERVICE_TEMPLATE = {
@@ -13,3 +13,4 @@ DOCKER_COMPOSE_SERVICE_TEMPLATE = {
 }
 
 STARTING_PORT = 2499
+IMAGE_TAG = "website-health-check:0.2"

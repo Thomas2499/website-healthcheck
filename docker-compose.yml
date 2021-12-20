@@ -1,9 +1,16 @@
 services:
-- website-healthcheck01:
+  website-healthcheck01:
     environment:
       PORT: 2499
-      WEBSITE_URL: http://gsatwetwtwet
+      WEBSITE_URL: http://web1
     image: website-health-check:0.2
     ports:
     - 2499:2499
-version: '3.0'
+  website-healthcheck02:
+    environment:
+      PORT: 2500
+      WEBSITE_URL: http://google.com
+    image: website-health-check:0.2
+    ports:
+    - 2500:2500
+version: '2.0'

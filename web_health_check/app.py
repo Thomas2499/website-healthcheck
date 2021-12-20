@@ -1,9 +1,11 @@
-from .scheduler import create_scheduled_check
-from flask import Flask, Response
-from .health_check import website
-from .config import HOST, PORT
 from threading import Thread
+
+from flask import Flask, Response
 from flask_cors import CORS
+
+from config import HOST, PORT
+from health_check import website
+from scheduler import create_scheduled_check
 
 app = Flask(__name__)
 CORS(app)

@@ -1,7 +1,8 @@
-from consts import DOCKER_COMPOSE_SERVICE_TEMPLATE, DOCKER_COMPOSE_TEMPLATE, STARTING_PORT
+from consts import DOCKER_COMPOSE_SERVICE_TEMPLATE, DOCKER_COMPOSE_TEMPLATE, IMAGE_TAG, STARTING_PORT
 from copy import deepcopy
 import socket
 import yaml
+import os
 
 
 def _check_port_availability(service_port):
@@ -28,6 +29,14 @@ def _create_compose_file(content):
         yaml.safe_dump(content, file)
 
 
+def _build_docker():
+    os.system(f"docker build ./web_health_check -t {IMAGE_TAG}")
+
+
+def _run_docker():
+    os.system("docker compose up -d")
+
+
 def create_env(websites):
     addresses = {}
     service_port = STARTING_PORT
@@ -42,7 +51,7 @@ def create_env(websites):
                 service_config = _build_service_compose(website, service_index, service_port)
 
         addresses[website] = f"http://localhost:{service_port}/status"
-        compose_file_content["services"].append(service_config)
+        compose_file_content["services"].update(service_config)
         service_index += 1
         service_port += 1
 
